@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dbb6okeh30vgp"]
 
 [ext_resource type="Texture2D" uid="uid://b5bpkcsoqgyku" path="res://assets/textures/cowboy-1.png" id="1_eg21a"]
+[ext_resource type="Script" uid="uid://bfnx216tq4rlf" path="res://cowboy.gd" id="1_girf3"]
 [ext_resource type="Texture2D" uid="uid://cj2sltwbcx0ve" path="res://assets/textures/q-key.png" id="2_s6b1u"]
 
 [sub_resource type="Animation" id="Animation_s6b1u"]
@@ -87,7 +88,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_eg21a"]
 resource_name = "shoot"
-length = 0.39999999999999997
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -113,6 +114,7 @@ _data = {
 }
 
 [node name="Cowboy" type="Node2D" unique_id=518310829]
+script = ExtResource("1_girf3")
 
 [node name="CowboySprite" type="Sprite2D" parent="." unique_id=61908784]
 texture = ExtResource("1_eg21a")
