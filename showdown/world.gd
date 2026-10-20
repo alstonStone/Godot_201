@@ -1,8 +1,18 @@
 extends Node2D
 
 
+signal reset_world
+var game_over = false
+
+
+
 func _ready() -> void:
 	$Timer.start(randf_range(3.0,7.0))
+
+func _process(delta: float) -> void:
+	if game_over and Input.is_action_just_pressed("restart"):
+		reset_world.emit()
+
 
 func resolve_duel(action):
 	if action == "p1_shoot":
@@ -23,4 +33,12 @@ func display_shoot():
 
 
 func _on_cowboy_winner() -> void:
+	game_over = true
 	$EndMusic.play()
+	$Plank.visible = false
+	$RestartLabel.visible = true
+	flicker_restart_label()
+	
+func flicker_restart_label():
+	$AnimationPlayer.play("restart")
+		
