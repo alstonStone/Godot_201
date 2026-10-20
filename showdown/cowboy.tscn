@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://b5bpkcsoqgyku" path="res://assets/textures/cowboy-1.png" id="1_eg21a"]
 [ext_resource type="Script" uid="uid://bfnx216tq4rlf" path="res://cowboy.gd" id="1_girf3"]
 [ext_resource type="Texture2D" uid="uid://cj2sltwbcx0ve" path="res://assets/textures/q-key.png" id="2_s6b1u"]
+[ext_resource type="Texture2D" uid="uid://cx2j7e0d5kf1q" path="res://assets/textures/plank.png" id="4_adixx"]
+[ext_resource type="FontFile" uid="uid://dmycah44wapmp" path="res://assets/fonts/PrStart.ttf" id="5_cuije"]
+[ext_resource type="AudioStream" uid="uid://cqhxh1nueqrid" path="res://assets/sounds/shot.wav" id="6_cuije"]
 
 [sub_resource type="Animation" id="Animation_s6b1u"]
 length = 0.001
@@ -82,6 +85,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [15, 16, 17, 18, 19]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"display_winner"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_girf3"]
 resource_name = "idle"
@@ -157,3 +174,24 @@ autoplay = &"idle"
 [node name="ButtonSprite" type="Sprite2D" parent="." unique_id=233260109]
 position = Vector2(0, 36)
 texture = ExtResource("2_s6b1u")
+
+[node name="WinnerSprite" type="Sprite2D" parent="." unique_id=1296749101]
+visible = false
+position = Vector2(0, -24)
+scale = Vector2(0.8481885, 1.176076)
+texture = ExtResource("4_adixx")
+
+[node name="WinnerLabel" type="Label" parent="WinnerSprite" unique_id=872499464]
+offset_left = -24.758646
+offset_top = -5.1017113
+offset_right = 47.241356
+offset_bottom = 17.898289
+scale = Vector2(0.8353595, 0.8182086)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_cuije")
+theme_override_font_sizes/font_size = 10
+text = "Winner"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=817214176]
+stream = ExtResource("6_cuije")

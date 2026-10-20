@@ -3,6 +3,7 @@ extends Node2D
 enum State {Waiting, Shooting, Dying, Fumbling}
 
 signal shot_gun(action)
+signal winner
 
 @export var action_name = "p1_shoot"
 
@@ -22,6 +23,7 @@ func _process(delta: float) -> void:
 
 
 func shoot():
+	$AudioStreamPlayer.play()
 	current_state = State.Shooting
 	$AnimationPlayer.play("shoot")
 	shot_gun.emit(action_name)
@@ -40,3 +42,8 @@ func holster():
 func wait():
 	current_state = State.Waiting
 	$AnimationPlayer.play("idle")
+
+
+func display_winner():
+	$WinnerSprite.visible = true
+	winner.emit()

@@ -12,6 +12,15 @@ func resolve_duel(action):
 
 
 func start_duel():
+	display_shoot()
 	$Cowboy.is_allowed_to_shoot = true
 	$Cowboy2.is_allowed_to_shoot = true
 	
+
+func display_shoot():
+	$Plank/Label.text = "SHOOT"
+	$Plank/Label.modulate = Color.hex(0x00ff00ff)
+
+
+func _on_cowboy_winner() -> void:
+	$EndMusic.play()

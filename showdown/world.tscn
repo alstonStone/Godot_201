@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dbb6okeh30vgp" path="res://cowboy.tscn" id="5_036b0"]
 [ext_resource type="Texture2D" uid="uid://dxo3rtskqtj0k" path="res://assets/textures/cowboy-2.png" id="6_dwbse"]
 [ext_resource type="Texture2D" uid="uid://co4o5vomyxy36" path="res://assets/textures/p-key.png" id="7_pkg7o"]
+[ext_resource type="AudioStream" uid="uid://peolymtaufa3" path="res://assets/music/farwest.mp3" id="9_ioo17"]
+[ext_resource type="AudioStream" uid="uid://b153skpf7ri33" path="res://assets/music/farwest-end.mp3" id="10_wse8f"]
 
 [sub_resource type="Animation" id="Animation_fj7yv"]
 length = 0.001
@@ -133,11 +135,13 @@ position = Vector2(120, -16)
 texture = ExtResource("3_tlwt5")
 
 [node name="Label" type="Label" parent="Plank" unique_id=1382423428]
+modulate = Color(0.09803922, 0.09803922, 0.09803922, 1)
 offset_left = -27.0
 offset_top = -5.0
 offset_right = 27.0
 offset_bottom = 18.0
-theme_override_colors/font_color = Color(0.289303, 0.06661253, 0.016445123, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("4_aqk2v")
 theme_override_font_sizes/font_size = 9
 text = "STEADY"
@@ -160,8 +164,17 @@ texture = ExtResource("7_pkg7o")
 one_shot = true
 autostart = true
 
+[node name="StartupMusic" type="AudioStreamPlayer" parent="." unique_id=640719537]
+stream = ExtResource("9_ioo17")
+autoplay = true
+
+[node name="EndMusic" type="AudioStreamPlayer" parent="." unique_id=2093499691]
+stream = ExtResource("10_wse8f")
+
 [connection signal="shot_gun" from="Cowboy" to="." method="resolve_duel"]
+[connection signal="winner" from="Cowboy" to="." method="_on_cowboy_winner"]
 [connection signal="shot_gun" from="Cowboy2" to="." method="resolve_duel"]
+[connection signal="winner" from="Cowboy2" to="." method="_on_cowboy_winner"]
 [connection signal="timeout" from="Timer" to="." method="start_duel"]
 
 [editable path="Cowboy2"]
